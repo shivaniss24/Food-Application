@@ -4,7 +4,7 @@ export default function main() {
   return (
     <>
       <nav>Navbar</nav>
-      <footer></footer>
+      <footer>Footer</footer>
     </>
   )
 }
