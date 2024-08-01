@@ -35,16 +35,16 @@ const Categories = () => {
         
         {/* categories cards */}
 
-        <div>
+        <div className='flex flex-col sm:flex-row flex-wrap gap-5 justify-around items-center mt-12'>
             {
                 categoriesItems.map((items,i)=>(
-              <div key={i}>
-                <div>
-                    <img src={items.image} alt="" className='bg-[#C1FIC6] p-5 rounded-full w-28 h-28'/>
+              <div key={i} className='shadow-lg rounded-md bg-white py-6 px-5 w-70 mx-auto text-center cursor-pointer hover:-translate-y-6 duration-300 transition-all'>
+                <div className='flex w-full mx-auto items-center justify-center'>
+                    <img src={items.image} alt="" className='bg-[#C4F1C6] p-5 rounded-full w-28 h-28'/>
                 </div>
-                <div>
-                    <h5>{items.title}</h5>
-                    <p>{items.des}</p>
+                <div className='mt-5 space-y-1'>
+                    <h5 className='text-[#1E1E1E] font-semibold'>{items.title}</h5>
+                    <p className='text-secondary text-sm'>{items.des}</p>
                 </div>
 
               </div>
