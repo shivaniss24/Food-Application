@@ -13,7 +13,7 @@ const Cards = ({item}) => {
 
   return (
 
-    <div className="card shadow-xl relative mr-5 md:my-5">
+    <div className="card shadow-xl relative mr-5 md:my-5 ">
 
         <div className={`rating gap-1 absolute right-2 top-2 p-4 heartStar bg-blue ${isHeartFilled? "text-rose-500":"text-white"}` } onClick={handleHeartClick}>
 
@@ -23,22 +23,19 @@ const Cards = ({item}) => {
       <Link to={`/menu/${item._id}`}>
       <figure>
       <img src={item.image} alt=""
-      className='hover:scale-105 transition-all duration-200 md:h-72'
+      className='hover:scale-105 transition-all duration-200 md:h-32 md:w-42 gap-10' 
       />
 
     </figure>
     </Link> 
-    <div className="card-body">
-      <h2 className="card-title">{item.title}</h2>
-      <Link to={`/menu/${item._id}`}>
-      <figure>
-      <img src={item.image} alt=""
-      className='hover:scale-105 transition-all duration-200 md:h-72'
-      />
 
-    </figure>
+    <div className="card-body">
+    <Link to={`/menu/${item._id}`}>
+      <h2 className="card-title">{item.title}</h2>
       </Link>
-      <p>Description of title</p>
+    
+    
+      <p>{item.recipe}</p>
       <div className="card-actions justify-between items-center mt-2">
         <h5 className='font-semibold'>
             <span className='text-sm text-red'>$</span>

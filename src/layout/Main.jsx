@@ -8,7 +8,9 @@ export default function main() {
   return (
     <>
     <Navbar/>
+    <div className='min-h-screen'>
     <Outlet/>
+    </div>
      <Footer/>
     </>
   )

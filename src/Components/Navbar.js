@@ -36,7 +36,7 @@ const Navbar = () => {
           <summary>Menu</summary>
           <ul className="p-2">
             <li>
-                <a>All</a>
+                <a href='/menu'>All</a>
             </li>
             <li>
                 <a>Pizza</a>
@@ -66,9 +66,6 @@ const Navbar = () => {
         </details>
                 </li>
       <li><a>Offers</a></li>
-
-
-       
         </>
     )
   return (

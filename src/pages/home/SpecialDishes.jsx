@@ -42,7 +42,7 @@ const SpecialDishes = () => {
     infinite: false,
     speed: 500,
     slidesToShow: 2,
-    slidesToScroll: 3,
+    slidesToScroll: 2,
     initialSlide: 0,
     responsive: [
       {
@@ -74,7 +74,7 @@ const SpecialDishes = () => {
     prevArrow: <simplePrevArrow/>
   };
   return (
-    < div className='section-container my-20 relative'>
+    < div className='max-w-screen-2xl container mx-auto xl:px-24 px-4 my-20 relative'>
   
       <div className='text-left'>
             <p className='subtitle'> 

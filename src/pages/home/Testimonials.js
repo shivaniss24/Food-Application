@@ -5,7 +5,7 @@ import { FaStar } from 'react-icons/fa';
 
 const Testimonials = () => {
   return (
-  <div className='section-container'>
+  <div className='section-container -mt-40'>
     <div className='flex flex-col md:flex-row items-center justify-between gap-12'>
         <div className='md:w-1/2'>
         <img src="/images/home/testimonials/testimonials.png" alt="" className='rounded-full' />
