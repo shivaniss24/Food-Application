@@ -111,7 +111,7 @@ const  Menu = () => {
    <div className="section-container">
 
     {/* filtering section */}
-      <div>
+      <div className="flex flex-col md:flex row flex-rap justify-between items-center space-y-3 mb-6">
         {/* buttons for all categories */}
         <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap "> 
             <button onClick={showAll} className={selectedCategory==="all"?"active":""}> All</button>
