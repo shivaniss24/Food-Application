@@ -10,6 +10,9 @@ const  Menu = () => {
      const[filteredItems,setFilteredItems]=useState([]);
      const[selectedCategory,setSelectedCategory]=useState("all");
      const[sortOption,setSortOption]=useState("default");
+     const [currentPage, setCurrentPage] = useState(1);
+     const [itemsPerPage] = useState(8); // Number of items to display per page
+   
 
 
     //  loading data using useeffect
@@ -76,9 +79,17 @@ const  Menu = () => {
         }
 
         setFilteredItems(sortedItems);
-    
+        setCurrentPage(1);
     }
       };
+
+      //   console.log(filteredItems);
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
      
 
     
@@ -149,10 +160,28 @@ const  Menu = () => {
         ))
     }
    </div>
+    </div>
 
+      {/* Pagination */}
+      <div className="flex justify-center my-8 flex-wrap gap-2">
+        {Array.from({ length: Math.ceil(filteredItems.length / itemsPerPage) }).map((_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={`mx-1 px-3 py-1 rounded-full ${
+              currentPage === index + 1 ? "bg-green text-white" : "bg-gray-200"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+
+    
     </div>
     </div>
     </div>
+
   );
 };
 

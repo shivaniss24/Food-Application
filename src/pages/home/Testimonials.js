@@ -12,10 +12,10 @@ const Testimonials = () => {
         </div>
 
         <div className='md:w-1/2'>
-           <div className='text-left'>
+           <div className='text-left md:w-4/5'>
             <p className='subtitle'>Testimonials</p>
             <h3 className='title'>Know what our customers say about us</h3>
-            <backquote className="my-5 text-secondary leading-[30px]">"I had the great ecperience in ordering the food from this app. The customer service is best provided here!"</backquote>
+            <p className="my-5 text-secondary leading-[30px]">"I had the great ecperience in ordering the food from this app. The customer service is best provided here!"</p>
 
         {/* Avatar */}
         <div className='flex items-center gap-4 flex-wrap'>

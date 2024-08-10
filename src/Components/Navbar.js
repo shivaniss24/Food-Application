@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdAddCall } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
+import Modal from './Modal';
+import { AuthContext } from '../contexts/AuthProvider';
 
 
 const Navbar = () => {
     const[isSticky,setSticky] = useState(false);
+    const {user} = useContext(AuthContext);
+    console.log(user);
 
 
     // handling the scrolls
@@ -68,6 +73,8 @@ const Navbar = () => {
       <li><a>Offers</a></li>
         </>
     )
+
+
   return (
     <header className='max-w-screen-2xl container mx-auto fixed top-0 left-0 right-0 transition-all duration-400 ease-in-out'>
         <div className={`navbar xl:px-24 {${isSticky?"shadow-md bg-base-100  transition-all duration-400 ease-in-out":""}}`}>
@@ -159,7 +166,14 @@ const Navbar = () => {
         </div>
       </div>
     
-    <a className="btn bg-blue rounded-full px-6 text-white flex items-center gap-2"><MdAddCall/></a>
+
+    {/* login button */}
+    <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-blue rounded-full px-6 text-white flex items-center gap-2"><FaRegUser />Login</button>
+
+    {/* dialog box */}
+     
+     <Modal/>
+      
   </div>
 </div>
     </header>
