@@ -20,29 +20,40 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
+
+// Auth provider
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
+
+// create an account
   const createUser = (email, password) => {
     setLoading(true);
-
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+
+  // signup with gmail
   const signUpWithGmail = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
+
+  // login or signup with email and password 
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logOut = () => {
+
+
+  // logout and signout
+  const logout = () => {
     localStorage.removeItem("genius-token");
     return signOut(auth);
   };
+
 
   // update your profile
   const updateUserProfile = (name, photoURL) => {
@@ -52,17 +63,22 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+
+  // check user signed in
   useEffect(()=>{
      const unsubscribe =onAuthStateChanged(auth,(currentUser)=>{
         if(currentUser){
             setUser(currentUser);
             setLoading(false);
-            const uid=user.uid;
+            
         }
         else{
             // user is signed out
         }
-     })
+     });
+     return()=>{
+      return unsubscribe();
+     }
   },[]);
     
   const authInfo = {
@@ -70,9 +86,10 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     login,
-    logOut,
+    logout,
     signUpWithGmail,
     updateUserProfile,
+
   };
 
   return (

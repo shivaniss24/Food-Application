@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
-
+import firebase from "firebase/compat/app";
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.APIKEY,
-  authDomain:process.env.AUTHDOMAIN,
-  projectId:process.env.PROJECTID,
-  storageBucket: process.env.STORAGEBUCKET,
-  messagingSenderId: process.env.MESSAGINGSENDERID,
-  appId: process.env.APPID,
-  measurementId: process.env.MEASUREMENTID
+  apiKey: "AIzaSyD48kpq_m5TdkvoKp4jqOJBHveWPcMjSuQ",
+  authDomain: "foodapp-timely-taste.firebaseapp.com",
+  projectId: "foodapp-timely-taste",
+  storageBucket: "foodapp-timely-taste.appspot.com",
+  messagingSenderId:" 136261348818",
+  appId: "1:136261348818:web:147d324cb0982893592c0b"
 };
 
 // Initialize Firebase

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { FaMicrosoft } from "react-icons/fa";
 import { CiFacebook } from "react-icons/ci";
@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Modal = () => {
-
+  
     const {
         register,
         handleSubmit,
@@ -19,7 +19,15 @@ const Modal = () => {
       const authContext=useContext(AuthContext);
       const signUpWithGmail=authContext.signUpWithGmail;
       const login=authContext.login;
+
       const [errorMessage,setErroMessage]=useState("");
+
+      const location= useLocation();
+      const navigate= useNavigate();
+
+      const from=location.state?.from?.pathname || "/";
+
+      
 
       const onSubmit = (data)=>{
         const email= data.email;
@@ -27,19 +35,29 @@ const Modal = () => {
         // console.log(email,password);
         login(email,password).then((result)=>{
           const user=result.user;
-          alert("Login Successfull");
+          // alert("Login Successfull");
+          document.getElementById('my_modal_5').close()
+          navigate(from,{replace:true});
+
         }).catch((error)=>{
           const errorMessage=error.message;
           setErroMessage("provide a correct email and password");
         })
+        // reset();
       }
 
+      
+
+      // handle login function
       const handleLogin=()=>{
         signUpWithGmail().then((result)=>{
           const user=result.user;
           alert("Login Successful")
-        }).catch((error)=>console.log(error));
-};
+        }).catch((error)=>{
+          const errorMessage=error.message;
+          setErroMessage("provide a correct email and password");
+        }
+       )};
 
 
   return (
@@ -71,7 +89,7 @@ const Modal = () => {
         </div>
         {/* errors */}
 {
-  errorMessage? <p>{errorMessage}</p> :""
+  errorMessage? <p className='text-red text-xs'>{errorMessage}</p> :""
 }
 
 

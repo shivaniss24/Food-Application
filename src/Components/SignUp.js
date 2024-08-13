@@ -1,10 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { FaMicrosoft } from "react-icons/fa";
 import { CiFacebook } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import Modal from './Modal';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const SignUp = () => {
 
@@ -15,7 +16,32 @@ const SignUp = () => {
         formState: { errors },
       } = useForm();
 
-      const onSubmit = (data)=> console.log(data);
+
+
+      const authContext=useContext(AuthContext);
+      const createUser=authContext.createUser;
+      const login=authContext.login;
+
+      const location=useLocation();
+      const navigate=useNavigate();
+
+      const from=location.state ?.from?.pathname || "/";
+
+      // on submit 
+      const onSubmit = (data)=>{
+          const email=data.email;
+          const password=data.password;
+          createUser(email,password).then((result)=>{
+            const user=result.user;
+            alert("Account creation successfull");
+            document.getElementById("my_modal_5").close();
+            navigate(from,{replace: true});
+          }).catch((error)=>{
+            const errorCode=error.code;
+            const errorMessage=error.message;
+            
+          })
+      }
 
 
   return (
@@ -52,21 +78,21 @@ const SignUp = () => {
      </div>
      {/* errors */}
 
+
      {/*  sign button */}
      <div className="form-control mt-6">
        <input type="submit" value="SignUp"  className="btn bg-blue"/>
      </div>
 
      <p className='text-center my-2'>Already have an account?
-        <button className='underlined text-red ml-2' onClick={()=>document.getElementById('my_modal_5').showModal()}>Login!
+        <button className='underlined text-red ml-2'
+         onClick={()=>document.getElementById('my_modal_5').showModal()}>Login!
           </button>{" "}</p>
 
-          <Link to="/"
+          <Link to="/"   onClick={()=>document.getElementById('my_modal_5').close()}
         className="btn btn-sm btn-circle btn-ghost absolute">
           ✕
           </Link>
-      
-
    </form>
 
 

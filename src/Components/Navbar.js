@@ -3,6 +3,7 @@ import { MdAddCall } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import Modal from './Modal';
 import { AuthContext } from '../contexts/AuthProvider';
+import Profile from './Profile';
 
 
 const Navbar = () => {
@@ -167,8 +168,20 @@ const Navbar = () => {
       </div>
     
 
+     {/* customized login button */}
+     {
+      user?( 
+      <>
+      <Profile user={user}/>
+      </>
+      ):(
+      <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-blue rounded-full px-6 text-white flex items-center gap-2"><FaRegUser />Login</button> 
+    ) }
+
+
+
     {/* login button */}
-    <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-blue rounded-full px-6 text-white flex items-center gap-2"><FaRegUser />Login</button>
+    {/* <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-blue rounded-full px-6 text-white flex items-center gap-2"><FaRegUser />Login</button> */}
 
     {/* dialog box */}
      
