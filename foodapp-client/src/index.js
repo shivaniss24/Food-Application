@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
 import router from "./router/Router.js";
 import  {RouterProvider} from "react-router-dom";
 import AuthProvider from './contexts/AuthProvider.js';

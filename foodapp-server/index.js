@@ -1,7 +1,7 @@
 const express=require('express');
 const app=express();
 const cors=require("cors");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 require('dotenv').config();
 console.log(process.env.DB_USER);
 console.log(process.env.DB_PASSWORD);
@@ -23,6 +23,8 @@ const uri = "mongodb+srv://shivanisoni:Shivanipassword1@shivani.bvehk.mongodb.ne
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
+    // useUnifiedTopology:true,
+    // useNewUrlParser: true,
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
@@ -54,7 +56,7 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.connect();
+    // await client.connect();
   }
 }
 run().catch(console.dir);
@@ -63,7 +65,6 @@ run().catch(console.dir);
 app.get("/",(req,res)=>{
   res.send("hello world");
 })
-
 
 
 // log all registered routes
