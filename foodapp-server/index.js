@@ -32,7 +32,7 @@ const client = new MongoClient(uri, {
 });
 
  // database and collections
- const menuCollections = client.db("Database-Food").collection("menu");
+ const menuCollections = client.db("Database-Food").collection("menus");
  const cartCollections = client.db("Database-Food").collection("cartItems");
 
 
