@@ -7,7 +7,6 @@ console.log(process.env.DB_USER);
 console.log(process.env.DB_PASSWORD);
 
 
-
 // username- engshivanisoni2405
 // password-tjZcJK3VUVlPHmLR
 
@@ -37,7 +36,7 @@ const client = new MongoClient(uri, {
 
 
   // all menu items 
-  app.use("/menu",async(req,res)=>{
+  app.get("/menu",async(req,res)=>{
    console.log("reached to menu route");
    const result= await menuCollections.find().toArray();
    res.send(result);
@@ -45,6 +44,12 @@ const client = new MongoClient(uri, {
    // const movies = database.collection("movies");
  });
 
+//  all alerts opr
+app.post('/cart',async(req,res)=>{
+  const cartItems = req.body;
+  const result = await cartCollections.insertOne(cartItem)
+  res.send(result);
+})
 
 
 async function run() {

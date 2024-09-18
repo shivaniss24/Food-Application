@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
+import { AuthContext } from '../contexts/AuthProvider';
 
 
 const Cards = ({item}) => {
     const [isHeartFilled,setHeartFilled]=useState(false);
-    
+    const {user} = useContext(AuthContext);
+    const{name,image,price,recipe,_id}=item;
+
+const  handleAddToCart=(item)=>{
+  console.log("add to cart clicked",item);
+  if(user && user?.email){
+    const cartItem= {menuItemId: _id, name,quantity:1, image,price,email:user.email, };
+    // console.log(cartItem);
+   fetch('http://localhost:3000/carts').then((res)=>res.json()).then((data)=>{
+    console.log(data);
+   }); 
+  }
+}
+
+
     const handleHeartClick=()=>{
         setHeartFilled(!isHeartFilled);
     }
 
+  
 
   return (
 
-    <div className="card shadow-xl relative mr-5 md:my-5 ">
+    <div className="card shadow-xl relative mr-5 md:my-5">
 
         <div className={`rating gap-1 absolute right-2 top-2 p-4 heartStar bg-blue ${isHeartFilled? "text-rose-500":"text-white"}` } onClick={handleHeartClick}>
 
@@ -40,7 +56,7 @@ const Cards = ({item}) => {
         <h5 className='font-semibold'>
             <span className='text-sm text-red'>$</span>
             {item.price}</h5>
-        <button className="btn bg-blue text-white">Buy Now</button>
+        <button className="btn bg-blue text-white" onClick={()=>handleAddToCart(item)}>Buy Now</button>
       </div>
     </div>
   </div>
